@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Valentine's Day</title>
     <style>
@@ -14,11 +14,14 @@
         align-items: center;
         justify-content: center;
         background-color: #380559;
+        margin: 0;
+        padding: 0;
       }
 
       .valentines-day-card {
         position: relative;
-        width: 400px;
+        width: 90vw;
+        max-width: 400px;
         height: 300px;
         background-color: #ff8fa3;
         overflow: hidden;
@@ -26,18 +29,8 @@
         border-radius: 10px;
         box-shadow: 0 0 100px rgba(0, 0, 0, 0.4);
       }
-      @media (min-width: 445px) {
-  .text {
-    font-size: 35px;
-  }
-  .text:hover:before {
-    font-size: 32px;
-  }
-  .text:hover:after {
-    font-size: 10px;
-  }
-}
 
+      /* El resto de los estilos permanecen sin cambios */
       .valentines-day-card:before {
         content: "";
         position: absolute;
@@ -230,6 +223,20 @@
         display: block;
         font-size: 10px;
         margin-top: 10px;
+      }
+
+      @media (max-width: 420px) {
+        .valentines-day-card {
+          transform: scale(0.9);
+        }
+        .text {
+          width: 90%;
+          left: 5%;
+          font-size: 30px;
+        }
+        .text:hover:before {
+          font-size: 28px;
+        }
       }
     </style>
   </head>
