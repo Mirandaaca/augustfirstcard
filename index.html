@@ -28,9 +28,9 @@
         border: 10px solid white;
         border-radius: 10px;
         box-shadow: 0 0 100px rgba(0, 0, 0, 0.4);
+        transition: background-color 0.5s ease;
       }
 
-      /* El resto de los estilos permanecen sin cambios */
       .valentines-day-card:before {
         content: "";
         position: absolute;
@@ -203,25 +203,9 @@
         transition: 0.2s;
       }
 
-      .hover {
-        color: white;
-        font-family: "Pacifico", cursive;
-        text-align: center;
-      }
-
-      .text:hover span {
-        display: none;
-      }
-
-      .text:hover:before {
-        content: "Ten una bonita tarde hoy, ily <3";
-        font-size: 32px;
-      }
-
-      .text:hover:after {
-        content: "hay que salir a bloquear xd";
+      .subtext {
+        font-size: 14px;
         display: block;
-        font-size: 10px;
         margin-top: 10px;
       }
 
@@ -234,14 +218,16 @@
           left: 5%;
           font-size: 30px;
         }
-        .text:hover:before {
-          font-size: 28px;
-        }
+      }
+
+      /* Estilos para la segunda tarjeta */
+      .card-2 .valentines-day-card {
+        background-color: #ffd6e0;
       }
     </style>
   </head>
   <body>
-    <div class="happy-valentines">
+    <div class="happy-valentines card-1">
       <div class="valentines-day-card">
         <div class="clouds"></div>
         <div class="hearts">
@@ -266,8 +252,47 @@
             <div class="right-side"></div>
           </div>
         </div>
-        <div class="text"><span>Feliz 1ro de agosto!</span></div>
+        <div class="text">
+          <span class="main-text">Feliz 1ro de agosto!</span>
+          <span class="subtext"></span>
+        </div>
       </div>
     </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', (event) => {
+        const happyValentines = document.querySelector('.happy-valentines');
+        const mainText = document.querySelector('.main-text');
+        const subText = document.querySelector('.subtext');
+        let isCard1 = true;
+
+        const messages = {
+          card1: {
+            main: "Feliz 1ro de agosto!",
+            sub: ""
+          },
+          card2: {
+            main: "Ten una bonita tarde hoy, ily <3",
+            sub: "hay que salir a bloquear xd"
+          }
+        };
+
+        document.body.addEventListener('click', () => {
+          if (isCard1) {
+            happyValentines.classList.remove('card-1');
+            happyValentines.classList.add('card-2');
+            mainText.textContent = messages.card2.main;
+            subText.textContent = messages.card2.sub;
+            isCard1 = false;
+          } else {
+            happyValentines.classList.remove('card-2');
+            happyValentines.classList.add('card-1');
+            mainText.textContent = messages.card1.main;
+            subText.textContent = messages.card1.sub;
+            isCard1 = true;
+          }
+        });
+      });
+    </script>
   </body>
 </html>
