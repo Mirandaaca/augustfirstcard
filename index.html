@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feliz Año Nuevo</title>
     <style>
-        @import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Quicksand:wght@400;500&display=swap');
 
         body {
             height: 100vh;
@@ -16,14 +16,14 @@
             background-color: #380559;
             margin: 0;
             padding: 0;
-            font-family: "Pacifico", cursive;
+            font-family: 'Quicksand', sans-serif;
         }
 
         .valentines-day-card {
             position: relative;
             width: 90vw;
             max-width: 400px;
-            height: 500px;
+            height: 600px;
             background-color: #ff8fa3;
             overflow: hidden;
             border: 10px solid white;
@@ -69,11 +69,12 @@
             height: 100px;
             border-radius: 50%;
             background-color: #fff0f3;
-            z-index: 5;
+            z-index: 1;  /* Reduced z-index so it stays behind text */
             top: 210px;
             left: -20px;
             box-shadow: 55px 30px #fff0f3, 125px 10px #fff0f3, 175px 20px #fff0f3,
                 250px 10px #fff0f3, 320px 5px #fff0f3, 380px 10px #fff0f3;
+            opacity: 0.7;  /* Made clouds slightly transparent */
         }
 
         .hearts {
@@ -144,17 +145,79 @@
         .text {
             color: #800f2f;
             position: absolute;
-            font-size: 24px;
-            line-height: 1.5;
+            font-size: 18px;
+            line-height: 1.6;
             text-align: center;
-            width: 90%;
-            left: 5%;
-            z-index: 3;
-            top: 50%;
+            width: 85%;
+            left: 7.5%;
+            z-index: 10;
+            top: 45%;  /* Adjusted to make room for button */
             transform: translateY(-50%);
             transition: opacity 0.5s ease;
             padding: 20px;
             opacity: 1;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            max-height: 70%;
+            overflow-y: auto;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        /* Custom scrollbar for the text container */
+        .text::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .text::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 4px;
+        }
+
+        .text::-webkit-scrollbar-thumb {
+            background: rgba(128, 15, 47, 0.5);
+            border-radius: 4px;
+        }
+
+        .text::-webkit-scrollbar-thumb:hover {
+            background: rgba(128, 15, 47, 0.7);
+        }
+
+        /* Switch button styles */
+        .switch-button {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+            background: linear-gradient(45deg, #ff4d6d, #c9184a);
+            border: none;
+            border-radius: 25px;
+            padding: 12px 30px;
+            color: white;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(201, 24, 74, 0.3);
+        }
+
+        .switch-button:hover {
+            transform: translateX(-50%) translateY(-2px);
+            box-shadow: 0 6px 20px rgba(201, 24, 74, 0.4);
+        }
+
+        .switch-button:active {
+            transform: translateX(-50%) translateY(0);
+            box-shadow: 0 2px 10px rgba(201, 24, 74, 0.3);
+        }
+        
+        .main-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 26px;
+            display: block;
+            margin-bottom: 15px;
+            color: #6a0f2f;
         }
 
         .text.fade-out {
@@ -227,6 +290,7 @@
                 <span class="main-text">Feliz año nuevo :3</span>
                 <span class="subtext">Espero la hayas pasado bonito con tu mamá y te haya gustado tu cena jsja</span>
             </div>
+            <button class="switch-button">Lee el siguiente mensaje ♥</button>
         </div>
     </div>
 
@@ -242,7 +306,7 @@
                     sub: "Espero la hayas pasado bonito con tu mamá y te haya gustado tu cena jsja"
                 },
                 card2: {
-                    main: "Quiero desearte mucha suerte y éxitos para este nuevo año, que todos tus planes y metas que tengas se cumplan este año, que te vaya bien en cualquier cosa que te propongas. También quiero decirte que alegras mis días cada vez que me escribes, cada vez que nos quedamos a hablar hasta tarde, cuando me llamas por las mañanas, cuando te preocupas por mi, y doy gracias a la vida por haberme permitido conocer a una persona tan linda, tierna y especial como tú, eres lo mejor que me ha pasado en este año y quiero poder seguir diciéndote lo mismo cada año jsjs.",
+                    main: "Quiero desearte mucha suerte y éxitos para este nuevo año ♥\n\nQue todos tus planes y metas se cumplan, y que te vaya bien en todo lo que te propongas.\n\nAlegras mis días cada vez que me escribes, cuando nos quedamos a hablar hasta tarde, cuando me llamas por las mañanas y cuando te preocupas por mi.\n\nDoy gracias a la vida por haberme permitido conocer a una persona tan linda, tierna y especial como tú :3. Eres lo mejor que me ha pasado en este año y quiero poder seguir diciéndote lo mismo cada año jsjs.",
                     sub: "mira mis tiktoks y los reels que te mando carajte :v"
                 }
             };
@@ -271,9 +335,14 @@
                 }, 500);
             };
 
-            document.querySelector('.valentines-day-card').addEventListener('click', updateCard);
-            document.addEventListener('touchend', updateCard);
+            const switchButton = document.querySelector('.switch-button');
+            
+            switchButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                updateCard();
+                switchButton.textContent = isCard1 ? 'Volver ♥' : 'Leer más ♥';
+            });
         });
     </script>
 </body>
-</html>        
+</html>
