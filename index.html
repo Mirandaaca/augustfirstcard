@@ -148,18 +148,18 @@
             font-size: 18px;
             line-height: 1.6;
             text-align: center;
-            width: 85%;
-            left: 7.5%;
+            width: 80%;  /* Reduced width */
+            left: 50%;   /* Changed to 50% for perfect centering */
+            transform: translate(-50%, -50%);  /* Center both horizontally and vertically */
             z-index: 10;
-            top: 45%;  /* Adjusted to make room for button */
-            transform: translateY(-50%);
+            top: 42%;    /* Moved up slightly */
             transition: opacity 0.5s ease;
             padding: 20px;
             opacity: 1;
             background-color: rgba(255, 255, 255, 0.9);
             border-radius: 15px;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-            max-height: 70%;
+            max-height: 65%;  /* Reduced height to make more room for button */
             overflow-y: auto;
             font-family: 'Quicksand', sans-serif;
         }
@@ -186,7 +186,7 @@
         /* Switch button styles */
         .switch-button {
             position: absolute;
-            bottom: 30px;
+            bottom: 40px;  /* Increased bottom spacing */
             left: 50%;
             transform: translateX(-50%);
             z-index: 20;
@@ -200,6 +200,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(201, 24, 74, 0.3);
+            white-space: nowrap;  /* Prevent button text from wrapping */
         }
 
         .switch-button:hover {
@@ -210,6 +211,49 @@
         .switch-button:active {
             transform: translateX(-50%) translateY(0);
             box-shadow: 0 2px 10px rgba(201, 24, 74, 0.3);
+        }
+
+        /* Enhanced responsive styles */
+        @media (max-width: 420px) {
+            .valentines-day-card {
+                width: 85vw;  /* Slightly narrower on mobile */
+                height: 550px;  /* Taller on mobile */
+                transform: scale(1);  /* Remove scale down on mobile */
+                margin: 20px 0;  /* Add some vertical margin */
+            }
+            
+            .text {
+                width: 85%;
+                font-size: 16px;  /* Slightly smaller font on mobile */
+                max-height: 60%;
+                top: 40%;
+            }
+            
+            .main-text {
+                font-size: 24px;  /* Slightly smaller heading on mobile */
+            }
+            
+            .switch-button {
+                bottom: 30px;
+                padding: 10px 25px;
+                font-size: 14px;
+            }
+        }
+
+        /* Larger screens */
+        @media (min-width: 1024px) {
+            .valentines-day-card {
+                max-width: 450px;  /* Slightly wider on desktop */
+                height: 650px;    /* Taller on desktop */
+            }
+            
+            .text {
+                max-height: 70%;  /* More space for text on desktop */
+            }
+            
+            .switch-button {
+                bottom: 50px;  /* More bottom spacing on desktop */
+            }
         }
         
         .main-text {
@@ -290,7 +334,7 @@
                 <span class="main-text">Feliz año nuevo :3</span>
                 <span class="subtext">Espero la hayas pasado bonito con tu mamá y te haya gustado tu cena jsja</span>
             </div>
-            <button class="switch-button">Lee el siguiente mensaje ♥</button>
+            <button class="switch-button">Leer más ♥</button>
         </div>
     </div>
 
@@ -306,7 +350,7 @@
                     sub: "Espero la hayas pasado bonito con tu mamá y te haya gustado tu cena jsja"
                 },
                 card2: {
-                    main: "Quiero desearte mucha suerte y éxitos para este nuevo año ♥\n\nQue todos tus planes y metas se cumplan, y que te vaya bien en todo lo que te propongas.\n\nAlegras mis días cada vez que me escribes, cuando nos quedamos a hablar hasta tarde, cuando me llamas por las mañanas y cuando te preocupas por mi.\n\nDoy gracias a la vida por haberme permitido conocer a una persona tan linda, tierna y especial como tú :3. Eres lo mejor que me ha pasado en este año y quiero poder seguir diciéndote lo mismo cada año jsjs.",
+                    main: "Quiero desearte mucha suerte y éxitos para este nuevo año ♥\n\nQue todos tus planes y metas se cumplan, y que te vaya bien en todo lo que te propongas.\n\nAlegras mis días cada vez que me escribes, cuando nos quedamos a hablar hasta tarde, cuando me llamas por las mañanas y cuando te preocupas por mi.\n\nDoy gracias a la vida por haberme permitido conocer a una persona tan linda, tierna y especial como tú. Eres lo mejor que me ha pasado en este año y quiero poder seguir diciéndote lo mismo cada año jsjs.",
                     sub: "mira mis tiktoks y los reels que te mando carajte :v"
                 }
             };
